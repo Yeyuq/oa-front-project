@@ -13,3 +13,4 @@ export function setToken() {
 export function removeToken() {
   return Cookies.remove(LoginKey)
 }
+

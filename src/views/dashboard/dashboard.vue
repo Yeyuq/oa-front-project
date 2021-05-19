@@ -11,14 +11,14 @@
             <div class="grid-content1 one">meetings</div>
           </el-col>
           <el-col :span="12">
-            <div class="grid-content1 one">search</div>
+            <div class="grid-content1 one"><search></search></div>
           </el-col>
         </div>
       </el-row>
       <el-row :gutter="27">
         <div class="row_2">
           <el-col :span="6">
-            <div class="grid-content2 one">calendar
+            <div class="grid-content2 one"><my-calendar></my-calendar>
             </div>
           </el-col>
           <el-col :span="12">
@@ -45,9 +45,11 @@
 
 <script>
 import Clock from '../../components/Clock'
+import Search from '../../components/Search'
+import MyCalendar from '../../components/MyCalendar'
 export default {
   name: 'dashboard',
-  components:{Clock}
+  components:{Clock,Search,MyCalendar}
 }
 </script>
 

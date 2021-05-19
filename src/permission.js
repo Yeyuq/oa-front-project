@@ -3,14 +3,14 @@ import store from './store'
 //import NProgress from 'nprogress' // Progress 进度条
 //import 'nprogress/nprogress.css' // Progress 进度条样式
 import {getToken} from './utils/auth' // 验权
-const whiteList = ['/login', '/404'] //白名单,不需要登录的路由
+const whiteList = ['/login', '/404' ,'/register'] //白名单,不需要登录的路由
 router.beforeEach((to, from, next) => {
-  console.log('to')
-  console.log({...to})
-  console.log('from')
-  console.log({...from})
-  console.log('store.getters.role')
-  console.log(store.getters.role)
+  // console.log('to')
+  // console.log({...to})
+  // console.log('from')
+  // console.log({...from})
+  // console.log('store.getters.role')
+  // console.log(store.getters.role)
 
   console.log(getToken())
   if (getToken()) {

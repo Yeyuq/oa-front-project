@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 
 export default {
   name: 'register',
@@ -119,7 +118,10 @@ export default {
           if("success"===data.result){
             this.active++
             this.active = this.active + ''
-            alert('注册成功！')
+            this.$message({
+              message:'注册成功',
+              type:'success'
+            })
           }
         })
       } else {

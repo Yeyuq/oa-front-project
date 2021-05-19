@@ -11,6 +11,7 @@ import './assets/css/font.css'
 import './assets/css/global.css'
 import './permission'
 import {hasPermission} from './utils/hasPermission'
+import {default as api} from './utils/api'
 
 Vue.prototype.hasPerm = hasPermission
 
@@ -26,6 +27,8 @@ Router.prototype.push = function push(location) {
 
 //mock
 require('./mock')
+
+Vue.prototype.api=api
 
 Vue.config.productionTip = false
 

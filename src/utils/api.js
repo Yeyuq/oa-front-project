@@ -21,13 +21,13 @@ service.interceptors.request.use(config => {
 // respone拦截器
 service.interceptors.response.use(
   response => {
-    const res = response.data;
+    const res = response.data
     if (res.code == '1000') {
-      return res;
+      return res
     }
     if (res.code == '100') {
-      return res.info;
-    } else if (res.code == "20011") {
+      return res.info
+    } else if (res.code == '20011') {
       Message({
         showClose: true,
         message: res.msg,
@@ -38,8 +38,8 @@ service.interceptors.response.use(
             location.reload()// 为了重新实例化vue-router对象 避免bug
           })
         }
-      });
-      return Promise.reject("未登录")
+      })
+      return Promise.reject('未登录')
     } else {
       Message({
         message: res.msg,

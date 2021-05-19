@@ -105,6 +105,7 @@ export default {
       })
     },
     registerForm (formName) {
+      console.log('在这里')
       this.$router.push('/register')
     },
     change () {

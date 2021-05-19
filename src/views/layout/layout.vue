@@ -41,12 +41,6 @@ export default {
   height: 100%;
   //position: absolute;
 }
-.el-header{
-  background-color: white;
-  color: black;
-  //text-align: center;
-  line-height: 40px;
-}
 
 .el-aside {
   z-index: 1;
@@ -55,6 +49,14 @@ export default {
 
   text-align: center;
   line-height: 200px;
+}
+
+.el-header{
+  background-color: rgba(255, 255, 255, 0.5);
+  color: black;
+  line-height: 40px;
+  z-index: 1;
+  box-shadow: 0 2px 17px 0 rgba(64, 158, 255, 0.1);
 }
 
 .el-main {
