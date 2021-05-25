@@ -1,10 +1,4 @@
 <template>
-<!--  <div class="main_container" :class="{hideSidebar:!sidebar.opened}">-->
-<!--    <sidebar class="sidebar-container"></sidebar>-->
-<!--    <div class="main-container">-->
-<!--      <app-main></app-main>-->
-<!--    </div>-->
-<!--  </div>-->
   <el-container class="main_container" :class="{hideSidebar:!sidebar.opened}">
     <el-aside width="200px"><sidebar class="sidebar-container"></sidebar></el-aside>
     <el-container>

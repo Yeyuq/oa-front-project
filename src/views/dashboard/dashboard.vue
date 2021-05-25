@@ -21,11 +21,11 @@
             <div class="grid-content2 one"><my-calendar></my-calendar>
             </div>
           </el-col>
-          <el-col :span="12">
+          <el-col :span="9">
             <div class="grid-content2 one">123</div>
           </el-col>
-          <el-col :span="6">
-            <div class="grid-content2 one">123</div>
+          <el-col :span="9">
+            <div class="grid-content2 one"><bulletin-board></bulletin-board></div>
           </el-col>
         </div>
       </el-row>
@@ -47,9 +47,10 @@
 import Clock from '../../components/Clock'
 import Search from '../../components/Search'
 import MyCalendar from '../../components/MyCalendar'
+import BulletinBoard from '../../components/BulletinBoard'
 export default {
   name: 'dashboard',
-  components:{Clock,Search,MyCalendar}
+  components:{Clock,Search,MyCalendar,BulletinBoard}
 }
 </script>
 

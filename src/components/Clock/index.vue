@@ -1,25 +1,25 @@
 <template>
   <div class="main_box">
-    <div style="height: 20px;position: absolute;bottom: 122%;left: 2%;font-size: 15px">
-      <p style="color: #909399">本月已出勤天数：</p>
-      <p style="color: #B3D8FF;position: absolute;top: 9%;left: 109%">7</p>
+    <div style="height: 20px;position: absolute;bottom: 79%;left: 2%;font-size: 15px">
+      <p style="color: #909399;line-height: 14px">本月已出勤天数：</p>
+      <p style="color: #B3D8FF;line-height: 14px;position: absolute;top: 9%;left: 109%">7</p>
     </div>
-    <div style="height: 20px;position: absolute;bottom: 97%;left: 2%;font-size: 15px">
-      <p style="color: #909399">本月未出勤天数：</p>
-      <p style="color: #C25555;position: absolute;top: 9%;left: 109%">12</p>
+    <div style="height: 20px;position: absolute;bottom: 52%;left: 2%;font-size: 15px">
+      <p style="color: #909399;line-height: 14px">本月未出勤天数：</p>
+      <p style="color: #C25555;line-height: 14px;position: absolute;top: 7%;left: 109%">12</p>
     </div>
-    <div class="button_in" style="position: absolute;bottom:29%;left: 17.9%;width: 34px;">
+    <div class="button_in" style="position: absolute;bottom:65%;left: 17.9%;width: 34px;line-height: 14px">
       <el-button round style="border-color: #C6E2FF;color: #409EFF"
                  @click="to_work()">上
       </el-button>
     </div>
-    <div class="button_off" style="position: absolute;top:2%;left: 17.9%;width: 34px">
+    <div class="button_off" style="position: absolute;top:39%;left: 17.9%;width: 34px;line-height: 14px">
       <el-button round style="border-color: #C6E2FF;color: #409EFF"
                  @click="off_work()">下
       </el-button>
     </div>
     <div
-      style="z-index: 1;position: absolute;left: 2%;bottom:48%;color: #909399;height: 40px;font-size: 15px">
+      style="z-index: 1;position: absolute;left: 2%;bottom:2%;color: #909399;height: 40px;font-size: 15px;line-height: 14px">
       {{ nowTime }}
     </div>
   </div>
@@ -75,5 +75,8 @@ export default {
 .main_box {
   height: 160px;
   width: 277px;
+}
+p{
+  height: 14px;
 }
 </style>

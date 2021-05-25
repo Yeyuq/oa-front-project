@@ -11,6 +11,8 @@ const user = {
     role: '',
     menus: [],
     permissions: [],
+    avatar:'',
+    // avatar:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201905%2F28%2F20190528143150_fETNW.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1624365601&t=7d3a9e920bc71e0d16f6312a02cde5d6'
   },
   mutations: {
     SET_USER: (state, userInfo) => {
@@ -19,6 +21,7 @@ const user = {
       state.role = userInfo.roleName
       state.menus = userInfo.menuList
       state.permissions = userInfo.permissionList
+      state.avatar=userInfo.avatarUrl
     },
     RESET_USER: (state) => {
       state.username = ''
@@ -27,6 +30,9 @@ const user = {
       state.menus = []
       state.permissions = []
     },
+    SET_AVATAR:(state,urlData)=>{
+      state.avatar=urlData
+    }
   },
   actions: {
     // 登录
@@ -137,7 +143,7 @@ const user = {
       console.log(delMsg)
       return new Promise((resolve) => {
         api({
-          url: '/api/DelSch',
+          url: '/api/delSch',
           method: 'post',
           data: delMsg
         }).then(data => {
@@ -153,7 +159,7 @@ const user = {
       console.log(FinMsg)
       return new Promise((resolve) => {
         api({
-          url: '/api/FinSch',
+          url: '/api/finSch',
           method: 'post',
           data: FinMsg
         }).then(data => {
@@ -167,7 +173,102 @@ const user = {
     SchList ({commit, state}) {
       return new Promise((resolve, reject) => {
         api({
-          url: '/api/SchList',
+          url: '/api/schList',
+          method: 'post'
+        }).then(data => {
+          resolve(data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    //获取公告列表
+    NoticeList ({commit, state}) {
+      return new Promise((resolve, reject) => {
+        api({
+          url: '/api/noticeList',
+          method: 'post'
+        }).then(data => {
+          resolve(data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    //获取公告界面列表
+    PageNoticeList ({commit, state}) {
+      return new Promise((resolve, reject) => {
+        api({
+          url: '/api/pageNoticeList',
+          method: 'post'
+        }).then(data => {
+          resolve(data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    //获取用户个人信息设置列表
+    UserSetInfo ({commit, state}) {
+      return new Promise((resolve, reject) => {
+        api({
+          url: '/api/userSetInfo',
+          method: 'post'
+        }).then(data => {
+          resolve(data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    //用户头像
+    UserAvatar ({commit, state},fileList) {
+      return new Promise((resolve, reject) => {
+        api({
+          url: '/api/userAvatar',
+          method: 'post',
+          data:fileList
+        }).then(data => {
+          commit('SET_AVATAR',fileList)
+          resolve(data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    //更改用户电话
+    UserPhone ({commit, state},phoneData) {
+      return new Promise((resolve, reject) => {
+        api({
+          url: '/api/userSetPhone',
+          method: 'post',
+          data:phoneData
+        }).then(data => {
+          resolve(data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    //更改用户介绍
+    UserIntroduce ({commit, state},introduceData) {
+      return new Promise((resolve, reject) => {
+        api({
+          url: '/api/userSetIntroduce',
+          method: 'post',
+          data:introduceData
+        }).then(data => {
+          resolve(data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    //获取用户搜索列表
+    NameList ({commit, state}) {
+      return new Promise((resolve, reject) => {
+        api({
+          url: '/api/userNickName',
           method: 'post'
         }).then(data => {
           resolve(data)

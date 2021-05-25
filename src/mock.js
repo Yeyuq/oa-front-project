@@ -3,7 +3,6 @@ import Random from 'mockjs'
 
 //登陆
 Mock.mock('/api/login', 'post', function (params) {
-  const Random = Mock.Random
   let data = JSON.parse(params.body)
   let username = data.username
   let password = data.password
@@ -37,15 +36,45 @@ Mock.mock('/api/register', 'get', function (params) {
 //获取信息
 Mock.mock('/api/getInfo', 'post', function () {
   return Mock.mock({
+    //管理员
+    // msg: '请求成功',
+    // info: {
+    //   userPermission: {
+    //     menuList: ['role', 'user', 'article'],
+    //     username: '超级用户23',
+    //     permissionList: ['article:list', 'user:list', 'user:add', 'role:update', 'article:add', 'role:list', 'article:update', 'user:update', 'role:delete', 'role:add'],
+    //     roleId: 1,
+    //     roleName: '管理员',
+    //     userId: 10003,
+    //   }
+    // },
+    // code: '100',
+
+    //普通用户
+    // msg: '请求成功',
+    // info: {
+    //   userPermission: {
+    //     menuList: ['common'],
+    //     username: '超级用户23',
+    //     permissionList: ['article:list', 'user:list', 'user:add', 'role:update', 'article:add', 'role:list', 'article:update', 'user:update', 'role:delete', 'role:add'],
+    //     roleId: 1,
+    //     roleName: '普通用户',
+    //     userId: 10003,
+    //   }
+    // },
+    // code: '100',
+
+    //管理层
     msg: '请求成功',
     info: {
       userPermission: {
-        menuList: ['role', 'user', 'article'],
+        menuList: ['common', 'admin'],
         username: '超级用户23',
         permissionList: ['article:list', 'user:list', 'user:add', 'role:update', 'article:add', 'role:list', 'article:update', 'user:update', 'role:delete', 'role:add'],
         roleId: 1,
-        roleName: '管理员',
+        roleName: '管理层',
         userId: 10003,
+        avatarUrl:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201905%2F28%2F20190528143150_fETNW.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1624365601&t=7d3a9e920bc71e0d16f6312a02cde5d6',
       }
     },
     code: '100',
@@ -80,7 +109,7 @@ Mock.mock('/api/setDialogForm', 'post', function (params) {
 })
 
 //删除日程
-Mock.mock('/api/DelSch', 'post', function (params) {
+Mock.mock('/api/delSch', 'post', function (params) {
   console.log('让我们看看这个删除的是什么')
   console.log(params)
   return Mock.mock({
@@ -90,7 +119,7 @@ Mock.mock('/api/DelSch', 'post', function (params) {
 })
 
 //完成日程
-Mock.mock('/api/FinSch', 'post', function (params) {
+Mock.mock('/api/finSch', 'post', function (params) {
   console.log('让我们看看这个完成的是什么')
   console.log(params)
   return Mock.mock({
@@ -100,52 +129,40 @@ Mock.mock('/api/FinSch', 'post', function (params) {
 })
 
 //日程列表
-Mock.mock('/api/SchList', 'post', function (params) {
-  let jsonForWork={
-    '2021-05-20':[
+Mock.mock('/api/schList', 'post', function (params) {
+  let jsonForWork = {
+    '2021-05-20': [
       {
-        // 'work':Random.cparagraph(1, 2),
-        'work':'121321312431',
+        'work': '@csentence(9, 19)',
         'index': 0,
-        'status':200,
-        'isFinished':false,
+        'isFinished': false,
       },
       {
-        // 'work':Random.cparagraph(1, 2),
-        'work':'121321312431',
+        'work': '@csentence(9, 19)',
         'index': 1,
-        'status':200,
-        'isFinished':true,
+        'isFinished': true,
       },
       {
-        // 'work':Random.cparagraph(1, 2),
-        'work':'121321312431',
+        'work': '@sentence(9, 19)',
         'index': 2,
-        'status':200,
-        'isFinished':false,
+        'isFinished': false,
       },
     ],
-    '2021-05-22':[
+    '2021-05-22': [
       {
-        // 'work':Random.cparagraph(1, 2),
-        'work':'121321312431',
+        'work': '@csentence(9, 19)',
         'index': 0,
-        'status':200,
-        'isFinished':true,
+        'isFinished': true,
       },
       {
-        // 'work':Random.cparagraph(1, 2),
-        'work':'121321312431',
+        'work': '@csentence(9, 19)',
         'index': 1,
-        'status':200,
-        'isFinished':false,
+        'isFinished': false,
       },
       {
-        // 'work':Random.cparagraph(1, 2),
-        'work':'121321312431',
+        'work': '@sentence(9, 19)',
         'index': 2,
-        'status':200,
-        'isFinished':false,
+        'isFinished': false,
       },
     ]
   }
@@ -154,6 +171,288 @@ Mock.mock('/api/SchList', 'post', function (params) {
     info: {
       result: 'success',
       jsonForWork: jsonForWork,
+    },
+  })
+})
+
+//公告栏列表，只需要九条
+Mock.mock('/api/noticeList', 'post', function (params) {
+  let noticeList = [
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 7)',
+    },
+    {
+      'noticeTitle': '@ctitle',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@cparagraph(1, 7)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@cname',
+      'noticeDetail': '@paragraph(2, 19)',
+    },
+    {
+      'noticeTitle': '@csentence(9, 19)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@cparagraph(2, 7)',
+    },
+    {
+      'noticeTitle': '@csentence(7,9)',
+      'time': '@date',
+      'pubUser': '@cname',
+      'noticeDetail': '@paragraph(2, 7)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 9)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@cparagraph(2, 7)',
+    },
+    {
+      'noticeTitle': '@csentence(9, 19)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 7)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 9)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 9)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 9)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 9)',
+    },
+  ]
+  return Mock.mock({
+    code: '100',
+    info: {
+      result: 'success',
+      noticeList: noticeList,
+    },
+  })
+})
+
+//公告栏界面分页列表
+Mock.mock('/api/pageNoticeList', 'post', function (params) {
+  let noticeList = [
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 7)',
+    },
+    {
+      'noticeTitle': '@ctitle',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@cparagraph(1, 7)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@cname',
+      'noticeDetail': '@paragraph(2, 19)',
+    },
+    {
+      'noticeTitle': '@csentence(9, 19)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@cparagraph(2, 7)',
+    },
+    {
+      'noticeTitle': '@csentence(7,9)',
+      'time': '@date',
+      'pubUser': '@cname',
+      'noticeDetail': '@paragraph(2, 7)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 9)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@cparagraph(2, 7)',
+    },
+    {
+      'noticeTitle': '@csentence(9, 19)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 7)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 9)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 9)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 9)',
+    },
+    {
+      'noticeTitle': '@sentence(2, 9)',
+      'time': '@date',
+      'pubUser': '@name',
+      'noticeDetail': '@paragraph(2, 9)',
+    },
+  ]
+  return Mock.mock({
+    code: '100',
+    info: {
+      result: 'success',
+      noticeList: noticeList,
+      totalPage: 2,
+      totalCount: 12
+    },
+  })
+})
+
+//获取个人主页用户信息
+Mock.mock('/api/userSetInfo', 'post', function (params) {
+  let userSetInfo={
+    'company':'宇宙最强公司',
+    'department':'摸鱼软件测试部 Moyu R&D',
+    'station':'软件测试工程师',
+    'location':'中国',
+    'email':'222222222@qq.com',
+    'cname':'菜虚鲲',
+    'ename':'Xu.KunCai',
+    'phone':'1234567890',
+    'introduce':'我石头人从来不空大，要和我学打篮球吗？不要和产品经理学打篮球。'
+  }
+  return Mock.mock({
+    msg: '请求成功',
+    info: {
+      result: 'success',
+      userSetInfo:userSetInfo,
+    },
+    code: '100',
+  })
+})
+
+//更改用户头像
+Mock.mock('/api/userAvatar', 'post', function (params) {
+  let data = params
+  // let imgUrl=data.url;
+  console.log('上传照片的url为：')
+  console.log(data.body)
+  // let imgList=[{
+  //   'name':'avatar.jpeg',
+  //   'url':'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201905%2F28%2F20190528143150_fETNW.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1624365601&t=7d3a9e920bc71e0d16f6312a02cde5d6',
+  // }]
+  return Mock.mock({
+    msg: '请求成功',
+    info: {
+      result: 'success',
+      // imgList:imgList
+    },
+    code: '100',
+  })
+})
+
+//更改用户电话
+Mock.mock('/api/userSetPhone', 'post', function (params) {
+  let data = params
+  // let imgUrl=data.url;
+  return Mock.mock({
+    msg: '请求成功',
+    info: {
+      result: 'success',
+    },
+    code: '100',
+  })
+})
+
+//更改用户介绍
+Mock.mock('/api/userSetIntroduce', 'post', function (params) {
+  let data = params
+  // let imgUrl=data.url;
+  return Mock.mock({
+    msg: '请求成功',
+    info: {
+      result: 'success',
+    },
+    code: '100',
+  })
+})
+
+//用户昵称列表
+Mock.mock('/api/userNickName', 'post', function (params) {
+  let userNickNameList = [
+    {
+      'userId': '@id',
+      'value': '@name',
+    },
+    {
+      'userId': '@id',
+      'value': '@name',
+    },
+    {
+      'userId': '@id',
+      'value': '@name',
+    },
+    {
+      'userId': '@id',
+      'value': '@name',
+    },
+    {
+      'userId': '@id',
+      'value': '@name',
+    },
+    {
+      'userId': '@id',
+      'value': '@name',
+    },
+    {
+      'userId': '@id',
+      'value': '@name',
+    },
+  ]
+  return Mock.mock({
+    code: '100',
+    info: {
+      result: 'success',
+      userNickNameList: userNickNameList,
     },
   })
 })

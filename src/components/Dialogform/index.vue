@@ -90,7 +90,6 @@ export default {
           let pushItem = {
             'work': this.form.schedule,
             'time': this.form.time,
-            'status': 200,
             'isFinished': false,
           }
           this.formtodolist.push(pushItem)
@@ -135,10 +134,17 @@ export default {
         item.isFinished = true
       }
       this.$store.dispatch('FinSch', this.FinMsg).then(data => {
-        this.$message({
-          message: '日程已完成',
-          type: 'success'
-        })
+        if (item.isFinished) {
+          this.$message({
+            message: '日程已完成',
+            type: 'success'
+          })
+        } else {
+          this.$message({
+            message: '日程已设置为待完成',
+            type: 'warning'
+          })
+        }
       })
     }
   }
