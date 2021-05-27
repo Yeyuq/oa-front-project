@@ -1,29 +1,31 @@
 <template>
   <div class="main_box">
-      <!--      <el-input placeholder="请输入用户名称或ID" v-model="input" class="input-with-select"-->
-      <!--                prefix-icon="el-icon-search">-->
-      <!--        <el-button type="primary" slot="append" icon="el-icon-search" style="color: #409EFF"></el-button>-->
-      <!--      </el-input>-->
-      <el-autocomplete
-        v-model="state"
-        :fetch-suggestions="querySearchAsync"
-        placeholder="请输入用户名称"
-        @select="handleSelect"
-        prefix-icon="el-icon-search"
-      >
-        <el-button type="primary" slot="append" icon="el-icon-search" style="color: #409EFF"></el-button>
-      </el-autocomplete>
+    <el-autocomplete
+      v-model="state"
+      :fetch-suggestions="querySearchAsync"
+      placeholder="请输入用户名称"
+      @select="handleSelect"
+      prefix-icon="el-icon-search"
+    >
+      <el-button type="primary" slot="append" icon="el-icon-search" style="color: #409EFF"
+                 @click="toFriendView"></el-button>
+    </el-autocomplete>
+<!--    <friend-view :inputdata="this.state" style="display: none"></friend-view>-->
   </div>
 </template>
 
 <script>
+// import friendView from '../../views/friendView/friendView'
+
 export default {
   name: 'index',
+  // components: {friendView},
   data () {
     return {
       state: '',
       timeout: null,
-      userNickName: []
+      userNickName: [],
+      inputData:''
     }
   },
   created () {
@@ -59,7 +61,17 @@ export default {
       }
     },
     handleSelect (item) {
-      console.log(item)
+      this.inputData = item['value']
+    },
+    toFriendView () {
+      //使用路由跳转传递数据
+      this.$router.push({
+        // path:'/friendView',
+        name:'用户信息',
+        params:{
+          inputVal:this.inputData
+        }
+      })
     }
   }
 }
@@ -70,7 +82,8 @@ export default {
   height: 160px;
   width: 277px;
 }
-.el-autocomplete{
+
+.el-autocomplete {
   width: 400px;
   padding-left: 90px;
 }

@@ -28,10 +28,13 @@ export const constantRouterMap = [
         path: 'dashboard', component: _import('dashboard/dashboard')
       },
       {
-        path: 'userSettings', component: _import('userSettings/userSettings'),meta: {title: '个人主页'},name: '个人主页',
+        path: 'userSettings', component: _import('userSettings/userSettings'), meta: {title: '个人主页'}, name: '个人主页',
       },
       {
-        path: 'bulletinView', component: _import('bulletinView/bulletinView'),meta: {title: '全部公告'},name: '全部公告',
+        path: 'bulletinView', component: _import('bulletinView/bulletinView'), meta: {title: '全部公告'}, name: '全部公告',
+      },
+      {
+        path: 'friendView', component: _import('friendView/friendView'), meta: {title: '用户信息'}, name: '用户信息',
       }
     ]
   }
@@ -134,6 +137,29 @@ export const asyncRouterMap = [
         component: _import('daily/writeDaily'),
         meta: {title: '填写日志'},
         menu: 'common'
+      }
+    ]
+  },
+  //系统管理
+  {
+    path: '/manageSystem',
+    component: layout,
+    alwaysShow: true,
+    meta: {title: '系统管理', icon: 'el-icon-setting'},
+    children: [
+      {
+        path: 'manageNotice',
+        name: '管理系统公告栏',
+        component: _import('manageSystem/manageNotice'),
+        meta: {title: '管理系统公告栏'},
+        menu: 'system'
+      },
+      {
+        path: 'manageAuthority',
+        name: '管理权限',
+        component: _import('manageSystem/manageAuthority'),
+        meta: {title: '管理权限'},
+        menu: 'system'
       }
     ]
   },

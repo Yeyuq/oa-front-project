@@ -11,7 +11,7 @@ const user = {
     role: '',
     menus: [],
     permissions: [],
-    avatar:'',
+    avatar: '',
     // avatar:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201905%2F28%2F20190528143150_fETNW.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1624365601&t=7d3a9e920bc71e0d16f6312a02cde5d6'
   },
   mutations: {
@@ -21,7 +21,7 @@ const user = {
       state.role = userInfo.roleName
       state.menus = userInfo.menuList
       state.permissions = userInfo.permissionList
-      state.avatar=userInfo.avatarUrl
+      state.avatar = userInfo.avatarUrl
     },
     RESET_USER: (state) => {
       state.username = ''
@@ -30,8 +30,8 @@ const user = {
       state.menus = []
       state.permissions = []
     },
-    SET_AVATAR:(state,urlData)=>{
-      state.avatar=urlData
+    SET_AVATAR: (state, urlData) => {
+      state.avatar = urlData
     }
   },
   actions: {
@@ -182,11 +182,11 @@ const user = {
         })
       })
     },
-    //获取公告列表
-    NoticeList ({commit, state}) {
+    //获取公告界面列表
+    PageNoticeList ({commit, state}) {
       return new Promise((resolve, reject) => {
         api({
-          url: '/api/noticeList',
+          url: '/api/pageNoticeList',
           method: 'post'
         }).then(data => {
           resolve(data)
@@ -195,13 +195,14 @@ const user = {
         })
       })
     },
-    //获取公告界面列表
-    PageNoticeList ({commit, state}) {
+    ManageNoticeList ({commit, state},delIndex) {
       return new Promise((resolve, reject) => {
         api({
-          url: '/api/pageNoticeList',
-          method: 'post'
+          url: '/api/manageNoticeList',
+          method: 'post',
+          data:delIndex
         }).then(data => {
+          console.log(delIndex)
           resolve(data)
         }).catch(error => {
           reject(error)
@@ -222,14 +223,14 @@ const user = {
       })
     },
     //用户头像
-    UserAvatar ({commit, state},fileList) {
+    UserAvatar ({commit, state}, fileList) {
       return new Promise((resolve, reject) => {
         api({
           url: '/api/userAvatar',
           method: 'post',
-          data:fileList
+          data: fileList
         }).then(data => {
-          commit('SET_AVATAR',fileList)
+          commit('SET_AVATAR', fileList)
           resolve(data)
         }).catch(error => {
           reject(error)
@@ -237,12 +238,12 @@ const user = {
       })
     },
     //更改用户电话
-    UserPhone ({commit, state},phoneData) {
+    UserPhone ({commit, state}, phoneData) {
       return new Promise((resolve, reject) => {
         api({
           url: '/api/userSetPhone',
           method: 'post',
-          data:phoneData
+          data: phoneData
         }).then(data => {
           resolve(data)
         }).catch(error => {
@@ -251,12 +252,12 @@ const user = {
       })
     },
     //更改用户介绍
-    UserIntroduce ({commit, state},introduceData) {
+    UserIntroduce ({commit, state}, introduceData) {
       return new Promise((resolve, reject) => {
         api({
           url: '/api/userSetIntroduce',
           method: 'post',
-          data:introduceData
+          data: introduceData
         }).then(data => {
           resolve(data)
         }).catch(error => {
@@ -271,6 +272,22 @@ const user = {
           url: '/api/userNickName',
           method: 'post'
         }).then(data => {
+          resolve(data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    //获取朋友个人信息设置列表
+    FriendInfo ({commit, state}, input) {
+      return new Promise((resolve, reject) => {
+        api({
+          url: '/api/friendViewInfo',
+          method: 'post',
+          data: input
+        }).then(data => {
+          console.log('this is input')
+          console.log(input)
           resolve(data)
         }).catch(error => {
           reject(error)
