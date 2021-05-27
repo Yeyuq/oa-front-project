@@ -195,14 +195,30 @@ const user = {
         })
       })
     },
-    ManageNoticeList ({commit, state},delIndex) {
+    //删除公告
+    DelNoticeList ({commit, state},delIndex) {
       return new Promise((resolve, reject) => {
         api({
-          url: '/api/manageNoticeList',
+          url: '/api/delNoticeList',
           method: 'post',
           data:delIndex
         }).then(data => {
           console.log(delIndex)
+          resolve(data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    //新建公告
+    AddNoticeList ({commit, state},addForm) {
+      return new Promise((resolve, reject) => {
+        api({
+          url: '/api/addNotice',
+          method: 'post',
+          data:addForm
+        }).then(data => {
+          console.log(addForm)
           resolve(data)
         }).catch(error => {
           reject(error)
